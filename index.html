@@ -15,12 +15,16 @@ Create a radio group with one radio button for each search engine. Recall that r
 Create a label element for each radio button.
 Finally, add a submit button to the form and set it's value to "Go!".
 -->
+<!--
+So a GET reqeuest is just the URL, a ?, a p, and equal sign and the search phrase
+So www.google.com/search?p=test
+-->
 <head>
 	<meta charset="utf-8">
 	<script>
 		// TODO: create a handler
     window.addEventListener("load", function(){
-        // TODO: register the handler
+			// TODO: register the handler
     });
 	</script>
 	<style>
@@ -30,15 +34,13 @@ Finally, add a submit button to the form and set it's value to "Go!".
 
 <body>
 	<h3>Super Duper Extra Special Fantastic Magic Multi Search Engine Searcher</h3>
-	<form id="searchForm">
+	<form id="searchForm" method="GET" action="https://handlers.education.launchcode.org/request-parrot">
 		<label>Enter search terms <input name="searchText" id="searchText"></label>
-		<label>
-			<input type="radio">
-				<option id="google" name="google">Google</option>
-				<option id="google" name="google">Google</option>
-				<option id="google" name="google">Google</option>
-				<option id="google" name="google">Google</option>
-		</label>
+		<label><input type="radio" id="google" name="searchEngine" value="google"> Google</label>
+		<label><input type="radio" id="duckDuckGo" name="searchEngine" value="duckDuckGo"> DuckDuckGo</label>
+		<label><input type="radio" id="bing" name="searchEngine" value="bing"> Bing</label>
+		<label><input type="radio" id="ask" name="searchEngine" value="ask"> Ask</label>
+		<button id="go">Fetch my results, peasant!</button>
 	</form>
 
 </body>
