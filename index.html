@@ -22,36 +22,37 @@ So www.google.com/search?p=test
 <head>
 	<meta charset="utf-8">
 	<script>
-		let form;
 		// TODO: create a handler
     window.addEventListener("load", function() {
 			// TODO: register the handler
 			console.log("JavaScript loading");
 			let form = document.getElementById('searchForm');
 			let actionUrl = "";
-			alert(form.searchEngine.value);
-//			form.searchEngxine.value = "ask";
+			alert(" Value of searchEngine: " + form.searchEngine.value);
+			form.searchText.value = "moo moo";
+			form.searchEngine.value = "duckDuckGo";
 			form.addEventListener("submit", function() {
 				// TODO: register the handler
 				let searchEngine = document.getElementById('searchEngine');
-				if (searchEngine.value === null) {
+				if (form.searchEngine.value === null || form.seatchText === "") {
 					alert("All fields required.. Please try again.");
 					event.preventdefault();
 				}
 				if (searchEngine.value === "google") {
-					actionUrl = "https://www.google.com/search";
+					actionSite = "https://www.google.com/search";
 				}
 				else if (searchEngine.value === "duckDuckGo") {
-					actionUrl = "https://duckduckgo.com/";
+					actionSite = "https://duckduckgo.com/";
 				}
 				else if (searchEngine.value === "bing") {
-					actionUrl = "https://www.bing.com/search";
+					actionSite = "https://www.bing.com/search";
 				}
 				else if (searchEngine.value === "ask")  {
-					actionUrl = "https://www.ask.com/web";
+					actionSite = "https://www.ask.com/web";
 				}
+				actionUrl = actionSite + "?p=" + form.searchText;
 				form.action = actionUrl;
-				console.log("JavaScript still loading");
+				console.log("Action URL changed to:" + actionUrl);
 			});
     });
 	</script>
