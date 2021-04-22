@@ -25,34 +25,53 @@ So www.google.com/search?p=test
 		// TODO: create a handler
     window.addEventListener("load", function() {
 			// TODO: register the handler
-			console.log("JavaScript loading");
-			let form = document.getElementById('searchForm');
+			console.log("Load listener loaded");
+			let form = document.getElementById("searchForm");
 			let actionUrl = "";
-			alert(" Value of searchEngine: " + form.searchEngine.value);
-			form.searchText.value = "moo moo";
-			form.searchEngine.value = "duckDuckGo";
+			let engine = form.searchEngine;
+//			engine.value = "google";
+//			searchText.value = "chicken soup book";
 			form.addEventListener("submit", function() {
+				console.log("Submit listener loaded")
 				// TODO: register the handler
-				let searchEngine = document.getElementById('searchEngine');
-				if (form.searchEngine.value === null || form.seatchText === "") {
+				alert("Text to search for: " + searchText.value);
+				alert("Value of searchEngine: " + engine.value);
+				textCheck = searchtext.value === "";
+				engineCheck = searchEngine.value === undefined;
+				console.log("textCheck: " + textCheck);
+				console.log("engineCheck: " + engineCheck);
+				if (engineCheck || textCheck) {
+					event.preventDefault();
 					alert("All fields required.. Please try again.");
-					event.preventdefault();
 				}
-				if (searchEngine.value === "google") {
+				if (engine.value === "google") {
 					actionSite = "https://www.google.com/search";
+					console.log("google")
 				}
-				else if (searchEngine.value === "duckDuckGo") {
+				else if (engine.value === "duckDuckGo") {
 					actionSite = "https://duckduckgo.com/";
+					console.log("duckDuckGo")
 				}
-				else if (searchEngine.value === "bing") {
+				else if (engine.value === "bing") {
 					actionSite = "https://www.bing.com/search";
+					console.log("bing")
 				}
-				else if (searchEngine.value === "ask")  {
+				else if (engine.value === "ask")  {
 					actionSite = "https://www.ask.com/web";
+					console.log("ask")
 				}
-				actionUrl = actionSite + "?p=" + form.searchText;
-				form.action = actionUrl;
+				else {
+					actionSite = "";
+				}
+				console.log(actionSite);
+				console.log("?p=");
+				console.log(searchText.value);
+				console.log(typeof actionSite);
+				console.log(typeof actionUrl);
+				console.log(typeof searchText.value);
+				actionUrl = actionSite + "?p=" + searchText.value;
 				console.log("Action URL changed to:" + actionUrl);
+				form.action = actionUrl;
 			});
     });
 	</script>
@@ -63,7 +82,7 @@ So www.google.com/search?p=test
 
 <body>
 	<h3>Super Duper Extra Special Fantastic Magic Multi Search Engine Searcher</h3>
-	<form id="searchForm" method="GET" action="https://handlers.education.launchcode.org/request-parrot">
+	<form id="searchForm" method="GET" actxion="https://handlers.education.launchcode.org/request-parrot">
 		<label>Enter search terms <input name="searchText" id="searchText"></label>
 		<label><input type="radio" id="google" name="searchEngine" value="google"> Google</label>
 		<label><input type="radio" id="duckDuckGo" name="searchEngine" value="duckDuckGo"> DuckDuckGo</label>
