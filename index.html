@@ -24,16 +24,18 @@ So www.google.com/search?p=test
 	<script>
 		let form;
 		// TODO: create a handler
-    window.addEventListener("load", function(){
+    window.addEventListener("load", function() {
 			// TODO: register the handler
 			console.log("JavaScript loading");
 			let form = document.getElementById('searchForm');
 			let actionUrl = "";
-			form.getElementById("google").checked = true;
-			form.addEventListener("submit", function(){
+			alert(form.searchEngine.value);
+//			form.searchEngxine.value = "ask";
+			form.addEventListener("submit", function() {
 				// TODO: register the handler
 				let searchEngine = document.getElementById('searchEngine');
-				if (searchEngine.value === "") {
+				if (searchEngine.value === null) {
+					alert("All fields required.. Please try again.");
 					event.preventdefault();
 				}
 				if (searchEngine.value === "google") {
