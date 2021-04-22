@@ -30,16 +30,19 @@ So www.google.com/search?p=test
 			let actionUrl = "";
 			let engine = form.searchEngine;
 //			engine.value = "google";
-//			searchText.value = "chicken soup book";
+			searchText.value = "chicken soup book";
 			form.addEventListener("submit", function() {
 				console.log("Submit listener loaded")
 				// TODO: register the handler
 				alert("Text to search for: " + searchText.value);
 				alert("Value of searchEngine: " + engine.value);
-				textCheck = searchtext.value === "";
-				engineCheck = searchEngine.value === undefined;
+				textCheck = searchText.value === "";
+				console.log(engine.value);
+				console.log(typeof engine.value);
+				engineCheck = (typeof engine.value) !== "string";
 				console.log("textCheck: " + textCheck);
 				console.log("engineCheck: " + engineCheck);
+				
 				if (engineCheck || textCheck) {
 					event.preventDefault();
 					alert("All fields required.. Please try again.");
