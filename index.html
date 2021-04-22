@@ -28,11 +28,11 @@ So www.google.com/search?p=test
 			// TODO: register the handler
 			console.log("JavaScript loading");
 			let form = document.getElementById('searchForm');
-			let searchEngine = document.getElementById('searchEngine');
 			let actionUrl = "";
-			console.log("JavaScript still loading");
+			form.getElementById("google").checked = true;
 			form.addEventListener("submit", function(){
 				// TODO: register the handler
+				let searchEngine = document.getElementById('searchEngine');
 				if (searchEngine.value === "") {
 					event.preventdefault();
 				}
@@ -49,7 +49,7 @@ So www.google.com/search?p=test
 					actionUrl = "https://www.ask.com/web";
 				}
 				form.action = actionUrl;
-				console.log("JavaScript is still loading");
+				console.log("JavaScript still loading");
 			});
     });
 	</script>
