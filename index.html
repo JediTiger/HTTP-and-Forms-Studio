@@ -29,7 +29,7 @@ So www.google.com/search?p=test
 			let form = document.getElementById("searchForm");
 			let actionUrl = "";
 			let engine = form.searchEngine;
-//			engine.value = "google";
+			engine.value = "google";
 			searchText.value = "chicken soup book";
 			form.addEventListener("submit", function() {
 				console.log("Submit listener loaded")
@@ -66,6 +66,12 @@ So www.google.com/search?p=test
 				else {
 					actionSite = "";
 				}
+				let i = 0;
+				let str = searchText;
+				while (i !== -1) {
+					i = str.indexOf(" ");
+					str = str.replace(" ","+");
+				}
 				console.log(actionSite);
 				console.log("?p=");
 				console.log(searchText.value);
@@ -86,7 +92,7 @@ So www.google.com/search?p=test
 <body>
 	<h3>Super Duper Extra Special Fantastic Magic Multi Search Engine Searcher</h3>
 	<form id="searchForm" method="GET" actxion="https://handlers.education.launchcode.org/request-parrot">
-		<label>Enter search terms <input name="searchText" id="searchText"></label>
+		<label>Enter search terms <input name="p" id="searchText"></label>
 		<label><input type="radio" id="google" name="searchEngine" value="google"> Google</label>
 		<label><input type="radio" id="duckDuckGo" name="searchEngine" value="duckDuckGo"> DuckDuckGo</label>
 		<label><input type="radio" id="bing" name="searchEngine" value="bing"> Bing</label>
