@@ -23,64 +23,39 @@ So www.google.com/search?p=test
 	<meta charset="utf-8">
 	<script>
 		// TODO: create a handler
+		function setSearchEngine() {
+			let form = document.getElementById("searchForm");
+			let engines = form.engine;
+			console.log("it ran");
+			let actions = {
+				"google": "https://www.google.com",
+				"duckDuckGo": "https://duckduckgo.com/",
+				"bing": "https://www.bing.com/search",
+				"ask": "https://www.ask.com/web"
+			};
+			console.log("Search engine chosen: " + engines.value);
+			let chosenEngine = actions[engines.value];
+			console.log("Search engine passed to action: " + chosenEngine);
+			return chosenEngine;
+		}
     window.addEventListener("load", function() {
 			// TODO: register the handler
 			console.log("Load listener loaded");
 			let form = document.getElementById("searchForm");
-			let actionUrl = "";
-			let engine = form.searchEngine;
-			engine.value = "google";
-			searchText.value = "chicken soup book";
+			let engines = form.engine;
+			engines.value = "bing";
+			searchText.value = "chicken";
 			form.addEventListener("submit", function() {
-				console.log("Submit listener loaded")
-				// TODO: register the handler
-				alert("Text to search for: " + searchText.value);
-				alert("Value of searchEngine: " + engine.value);
+				chosenEngine = setSearchEngine();
 				textCheck = searchText.value === "";
-				console.log(engine.value);
-				console.log(typeof engine.value);
-				engineCheck = (typeof engine.value) !== "string";
+				engineCheck = engines.value === "";
 				console.log("textCheck: " + textCheck);
 				console.log("engineCheck: " + engineCheck);
-				
 				if (engineCheck || textCheck) {
 					event.preventDefault();
 					alert("All fields required.. Please try again.");
 				}
-				if (engine.value === "google") {
-					actionSite = "https://www.google.com/search";
-					console.log("google")
-				}
-				else if (engine.value === "duckDuckGo") {
-					actionSite = "https://duckduckgo.com/";
-					console.log("duckDuckGo")
-				}
-				else if (engine.value === "bing") {
-					actionSite = "https://www.bing.com/search";
-					console.log("bing")
-				}
-				else if (engine.value === "ask")  {
-					actionSite = "https://www.ask.com/web";
-					console.log("ask")
-				}
-				else {
-					actionSite = "";
-				}
-				let i = 0;
-				let str = searchText;
-				while (i !== -1) {
-					i = str.indexOf(" ");
-					str = str.replace(" ","+");
-				}
-				console.log(actionSite);
-				console.log("?p=");
-				console.log(searchText.value);
-				console.log(typeof actionSite);
-				console.log(typeof actionUrl);
-				console.log(typeof searchText.value);
-				actionUrl = actionSite + "?p=" + searchText.value;
-				console.log("Action URL changed to:" + actionUrl);
-				form.action = actionUrl;
+				form.setAttribute("action",chosenEngine);
 			});
     });
 	</script>
@@ -90,14 +65,14 @@ So www.google.com/search?p=test
 </head>
 
 <body>
-	<h3>Super Duper Extra Special Fantastic Magic Multi Search Engine Searcher</h3>
-	<form id="searchForm" method="GET" actxion="https://handlers.education.launchcode.org/request-parrot">
+	<h3>Super Duper Extra Special Fantastic Magic Search Engine Helper Searcher</h3>
+	<form id="searchForm" method="GET">
 		<label>Enter search terms <input name="p" id="searchText"></label>
-		<label><input type="radio" id="google" name="searchEngine" value="google"> Google</label>
-		<label><input type="radio" id="duckDuckGo" name="searchEngine" value="duckDuckGo"> DuckDuckGo</label>
-		<label><input type="radio" id="bing" name="searchEngine" value="bing"> Bing</label>
-		<label><input type="radio" id="ask" name="searchEngine" value="ask"> Ask</label>
-		<button id="go">Fetch my results, peasant!</button>
+		<label><input type="radio" id="google" name="engine" value="google"> Google</label>
+		<label><input type="radio" id="duckDuckGo" name="engine" value="duckDuckGo"> DuckDuckGo</label>
+		<label><input type="radio" id="bing" name="engine" value="bing"> Bing</label>
+		<label><input type="radio" id="ask" name="engine" value="ask"> Ask</label>
+		<button id="go">Go!</button>
 	</form>
 
 </body>
